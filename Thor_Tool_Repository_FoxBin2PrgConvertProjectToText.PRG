@@ -12,7 +12,7 @@ IF PCOUNT() = 1 ;
 	WITH lxParam1
 	
 		* Required
-		.Prompt		   = 'Convert Project files to FoxBin2Prg text' && used in menus
+		.Prompt		   = 'Convert all binary files to text files'
 		
 		* Optional
 		TEXT TO .Description NOSHOW && a description for the tool
@@ -24,14 +24,13 @@ If there is no ActiveProject, you will be prompted for a project to convert.
 
 		* These are used to group and sort tools when they are displayed in menus or the Thor form
 		.Source		   = '' && where did this tool come from?  Your own initials, for instance
-		.Category      = 'Applications|FoxBin2Prg' && creates categorization of tools; defaults to .Source if empty
+		.Category      = 'Applications|FoxBin2Prg|Projects' && creates categorization of tools; defaults to .Source if empty
 		.Sort		   = 20 && the sort order for all items from the same Category
 		
 		* For public tools, such as PEM Editor, etc.
 		.Version	   = '' && e.g., 'Version 7, May 18, 2011'
 		.Author        = 'Mike Potjer'
-		.Link          = '' && link to a page for this tool
-		.VideoLink     = '' && link to a video for this tool
+		.Link          = 'https://vfpx.codeplex.com/wikipage?title=Thor%20TWEeT%2025'
 
 *!*			.PlugInClasses   = 'clsGetFoxBin2PrgFolderPlugIn'
 		.PlugIns		 = 'Get FoxBin2Prg Folder'

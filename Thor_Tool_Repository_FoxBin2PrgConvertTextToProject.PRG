@@ -12,12 +12,15 @@ IF PCOUNT() = 1 ;
 	WITH lxParam1
 	
 		* Required
-		.Prompt		   = 'Generate Project files from FoxBin2Prg text' && used in menus
+		.Prompt		   = 'Generate binary files from all text files' && used in menus
 		
 		* Optional
 		TEXT TO .Description NOSHOW && a description for the tool
+
 If there is a FoxBin2Prg text file for the ActiveProject, generate the VFP binary files for it.
+
 If there is no ActiveProject, or a FoxBin2Prg text file is not found for it, you will be prompted for a FoxBin2Prg project file to generate.
+
 When running this tool from the Tool Launcher or the Thor Toolbar, you should first close all projects and execute a CLEAR ALL.
 		ENDTEXT
 		.StatusBarText = ''
@@ -25,14 +28,13 @@ When running this tool from the Tool Launcher or the Thor Toolbar, you should fi
 
 		* These are used to group and sort tools when they are displayed in menus or the Thor form
 		.Source		   = '' && where did this tool come from?  Your own initials, for instance
-		.Category      = 'Applications|FoxBin2Prg' && creates categorization of tools; defaults to .Source if empty
-		.Sort		   = 30 && the sort order for all items from the same Category
+		.Category      = 'Applications|FoxBin2Prg|Projects' && creates categorization of tools; defaults to .Source if empty
+		.Sort		   = 90 && the sort order for all items from the same Category
 		
 		* For public tools, such as PEM Editor, etc.
 		.Version	   = '' && e.g., 'Version 7, May 18, 2011'
 		.Author        = 'Mike Potjer'
-		.Link          = '' && link to a page for this tool
-		.VideoLink     = '' && link to a video for this tool
+		.Link          = 'https://vfpx.codeplex.com/wikipage?title=Thor%20TWEeT%2025'
 
 *!*			.PlugInClasses   = 'clsGetFoxBin2PrgFolderPlugIn'
 		.PlugIns		 = 'Get FoxBin2Prg Folder'

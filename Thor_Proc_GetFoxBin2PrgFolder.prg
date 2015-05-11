@@ -12,6 +12,8 @@
 * The name of the main EXE file we expect to find in the FoxBin2Prg folder.
 #DEFINE FOXBIN2PRG_MAIN_EXE_FILENAME		"FoxBin2Prg.EXE"
 
+LPARAMETERS tlDoNotPrompt
+
 LOCAL lcFoxBin2PRGFolder
 
 IF NOT EMPTY( FOXBIN2PRG_CUSTOM_INSTALL_FOLDER ) ;
@@ -38,6 +40,10 @@ DO CASE
 		* FoxBin2Prg was found in the current VFP path.
 		lcFoxBin2PRGFolder = ADDBS( JUSTPATH( FULLPATH( FOXBIN2PRG_MAIN_EXE_FILENAME ) ) )
 
+	CASE m.tlDoNotPrompt 
+		* FoxBin2Prg not found, and we are not to prompt
+		lcFoxBin2PRGFolder = SPACE(0)
+
 	OTHERWISE
 		* We don't know where FoxBin2Prg is located, so if it's installed,
 		* let the developer tell us where it is.
@@ -57,11 +63,6 @@ DO CASE
 		ENDDO
 ENDCASE
 
-* Populating _SCREEN.xThorResult allows us to retrieve the FoxBin2Prg
-* folder using a Thor call like the following:
-* lcFolder = EXECSCRIPT( _Screen.cThorDispatcher, "Thor_Proc_GetFoxBin2PrgFolder" )
-ADDPROPERTY( _SCREEN, "xThorResult", m.lcFoxBin2PRGFolder )
+* Return result, both if called directly or using _Screen.cThorDispatcher
+Return ExecScript(_Screen.cThorDispatcher, 'Result=', m.lcFoxBin2PRGFolder )
 
-* Also return the folder name, so that this function can be called
-* directly.
-RETURN m.lcFoxBin2PRGFolder
